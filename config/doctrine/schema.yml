@@ -1,0 +1,1255 @@
+AgreementRef:
+  connection: doctrine
+  tableName: agreement_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    short_name:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    TeacherRef:
+      local: id
+      foreign: agreement_id
+      type: many
+
+BudgetRef:
+  connection: doctrine
+  tableName: budget_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Cycle:
+      local: id
+      foreign: budget_id
+      type: many
+    Managercycle:
+      local: id
+      foreign: budjet_id
+      type: many
+
+ControlRef:
+  connection: doctrine
+  tableName: control_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+
+CourseRef:
+  connection: doctrine
+  tableName: course_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    CycleRef:
+      local: id
+      foreign: course_id
+      type: many
+
+Cycle:
+  connection: doctrine
+  tableName: cycle
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    cycle_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    place_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    brigade:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '1'
+      notnull: true
+      autoincrement: false
+    manager_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '7'
+      notnull: true
+      autoincrement: false
+    brigade_est:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    brigade_est2:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    group_est:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    group_est2:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    budget_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    staff_est:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    staff_est2:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    all_est:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    all_est2:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+  relations:
+    CycleRef:
+      local: cycle_id
+      foreign: id
+      type: one
+    PlaceRef:
+      local: place_id
+      foreign: id
+      type: one
+    BudgetRef:
+      local: budget_id
+      foreign: id
+      type: one
+    TeacherRef:
+      local: manager_id
+      foreign: id
+      type: one
+    CycleDate:
+      local: id
+      foreign: cycle_id
+      type: many
+    CycleTeacher:
+      local: id
+      foreign: cycle_id
+      type: many
+    TimetableCycleSubject:
+      local: id
+      foreign: cycle_id
+      type: many
+    TimetableCycleAction:
+      local: id
+      foreign: cycle_id
+      type: many
+    Timetable:
+      local: id
+      foreign: cycle_id
+      type: many
+
+CycleDate:
+  connection: doctrine
+  tableName: cycle_date
+  columns:
+    cycle_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    start:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    finish:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+  relations:
+    Cycle:
+      local: cycle_id
+      foreign: id
+      type: one
+
+CycleRef:
+  connection: doctrine
+  tableName: cycle_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    instruction_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    course_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    duration:
+      type: float(9)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0.000'
+      notnull: true
+      autoincrement: false
+  relations:
+    InstructionRef:
+      local: instruction_id
+      foreign: id
+      type: one
+    CourseRef:
+      local: course_id
+      foreign: id
+      type: one
+    Cycle:
+      local: id
+      foreign: cycle_id
+      type: many
+    CycleSubject:
+      local: id
+      foreign: cycle_id
+      type: many
+    Managercycle:
+      local: id
+      foreign: cycle_id
+      type: many
+
+CycleSubject:
+  connection: doctrine
+  tableName: cycle_subject
+  columns:
+    cycle_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    subject_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    all:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    all_corr:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    theory:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    theory_corr:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    practice:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    practice_corr:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    group:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+  relations:
+    CycleRef:
+      local: cycle_id
+      foreign: id
+      type: one
+    SubjectRef:
+      local: subject_id
+      foreign: id
+      type: one
+
+CycleTeacher:
+  connection: doctrine
+  tableName: cycle_teacher
+  columns:
+    cycle_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    teacher_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    subject_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    theory:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    practice:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    i_half:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    ii_half:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+  relations:
+    Cycle:
+      local: cycle_id
+      foreign: id
+      type: one
+    TeacherRef:
+      local: teacher_id
+      foreign: id
+      type: one
+    SubjectRef:
+      local: subject_id
+      foreign: id
+      type: one
+
+InstructionRef:
+  connection: doctrine
+  tableName: instruction_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    CycleRef:
+      local: id
+      foreign: instruction_id
+      type: many
+
+Managercycle:
+  connection: doctrine
+  tableName: managercycle
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    cycle_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    start:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    finish:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    students:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    students_comm:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    five:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    four:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    three:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    two:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    notpassed:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    budjet_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    month:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    plan_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    manager_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '7'
+      notnull: false
+      autoincrement: false
+    joint1:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '-1'
+      notnull: true
+      autoincrement: false
+    joint2:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '-1'
+      notnull: true
+      autoincrement: false
+    place_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    table_month:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    satisfaction:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+  relations:
+    BudgetRef:
+      local: budjet_id
+      foreign: id
+      type: one
+    PlanRef:
+      local: plan_id
+      foreign: id
+      type: one
+    TeacherRef:
+      local: manager_id
+      foreign: id
+      type: one
+    PlaceRef:
+      local: place_id
+      foreign: id
+      type: one
+    CycleRef:
+      local: cycle_id
+      foreign: id
+      type: one
+    ManagercycleTeacher:
+      local: id
+      foreign: managercycle_id
+      type: many
+
+ManagercycleTeacher:
+  connection: doctrine
+  tableName: managercycle_teacher
+  columns:
+    managercycle_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    teacher_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    budget_theory:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    budget_practice:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    com_theory:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    com_practice:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    budget_telecom:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    com_telecom:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+  relations:
+    TeacherRef:
+      local: teacher_id
+      foreign: id
+      type: one
+    Managercycle:
+      local: managercycle_id
+      foreign: id
+      type: one
+
+PlaceRef:
+  connection: doctrine
+  tableName: place_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Cycle:
+      local: id
+      foreign: place_id
+      type: many
+    Managercycle:
+      local: id
+      foreign: place_id
+      type: many
+
+PlanRef:
+  connection: doctrine
+  tableName: plan_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Managercycle:
+      local: id
+      foreign: plan_id
+      type: many
+
+StaffRef:
+  connection: doctrine
+  tableName: staff_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    TeacherRef:
+      local: id
+      foreign: staff_id
+      type: many
+
+SubjectRef:
+  connection: doctrine
+  tableName: subject_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    CycleSubject:
+      local: id
+      foreign: subject_id
+      type: many
+    CycleTeacher:
+      local: id
+      foreign: subject_id
+      type: many
+    TimetableCycleSubject:
+      local: id
+      foreign: subject_id
+      type: many
+
+TeacherRef:
+  connection: doctrine
+  tableName: teacher_ref
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    name:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    staff_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    series:
+      type: string(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    number:
+      type: string(6)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    givenby:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    givenwhen:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '1970-01-01'
+      notnull: false
+      autoincrement: false
+    birthday:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '1970-01-01'
+      notnull: false
+      autoincrement: false
+    zipcode:
+      type: string(6)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    city:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    street:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    house:
+      type: string(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    flat:
+      type: string(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    zipcode2:
+      type: string(6)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    city2:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    street2:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    house2:
+      type: string(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    flat2:
+      type: string(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    tel:
+      type: string(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    snils:
+      type: string(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    inn:
+      type: string(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    education:
+      type: string(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    experience:
+      type: string(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    place:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    category:
+      type: string(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    title:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    to_delete:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
+    agreement_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    AgreementRef:
+      local: agreement_id
+      foreign: id
+      type: one
+    StaffRef:
+      local: staff_id
+      foreign: id
+      type: one
+    Cycle:
+      local: id
+      foreign: manager_id
+      type: many
+    CycleTeacher:
+      local: id
+      foreign: teacher_id
+      type: many
+    Managercycle:
+      local: id
+      foreign: manager_id
+      type: many
+    ManagercycleTeacher:
+      local: id
+      foreign: teacher_id
+      type: many
+    TimetableCycleSubject:
+      local: id
+      foreign: teacher_id
+      type: many
+
+TimetableAction:
+  connection: doctrine
+  tableName: timetable_action
+  columns:
+    name: {type: string(255), notnull: true}
+    contraction: {type: string(255), notnull: true}
+  relations:
+    TimetableCycleAction:
+      local: id
+      foreign: action_id
+      type: many
+
+TimetableCycleSubject:
+  connection: doctrine
+  tableName: timetable_cycle_subject
+  columns:
+    cycle_id: {type: integer(4), notnull: true}
+    timetable_id: {type: integer}
+    teacher_id: {type: integer(4)}
+    subject_name: {type: string(255)}
+    subject_contraction: {type: string(255)}
+    teacher_contraction: {type: string(255)}
+  relations:
+    Cycle:
+      local: cycle_id
+      foreign: id
+      type: one
+    Timetable:
+      local: timetable_id
+      foreign: id
+      type: one
+    SubjectRef:
+      local: subject_id
+      foreign: id
+      type: one
+    TeacherRef:
+      local: teacher_id
+      foreign: id
+      type: one
+    TimetableItem:
+      local: id
+      foreign: entity_id
+      type: many
+
+TimetableCycleAction:
+  connection: doctrine
+  tableName: timetable_cycle_action
+  columns:
+    cycle_id: {type: integer(4), notnull: true}
+    timetable_id: {type: integer}
+    action_id: {type: integer, notnull: true}
+    teacher_id: {type: integer(4)}
+    teacher_contraction: {type: string(255)}
+  relations:
+    Cycle:
+      local: cycle_id
+      foreign: id
+      type: one
+    Timetable:
+      local: timetable_id
+      foreign: id
+      type: one
+    TimetableAction:
+      local: action_id
+      foreign: id
+      type: one
+    TeacherRef:
+      local: teacher_id
+      foreign: id
+      type: one
+    TimetableActionItem:
+      local: id
+      foreign: entity_id
+      type: many
+
+Timetable:
+  connection: doctrine
+  tableName: timetable
+  columns:
+    cycle_id: {type: integer(4), notnull: true}
+    start: {type: date, notnull: true}
+    finish: {type: date, notnull: true}
+    brigade_count: {type: integer, notnull: true}
+    town: {type: string(255)}
+    hour_count: {type: integer}
+  relations:
+    Cycle:
+      local: cycle_id
+      foreign: id
+      type: one
+    TimetableItem:
+      local: id
+      foreign: timetable_id
+      type: many
+    TimetableActionItem:
+      local: id
+      foreign: timetable_id
+      type: many
+    TimetableCycleSubject:
+      local: id
+      foreign: timetable_id
+      type: many
+    TimetableCycleAction:
+      local: id
+      foreign: timetable_id
+      type: many
+
+TimetableItem:
+  connection: doctrine
+  tableName: timetable_item
+  columns:
+    timetable_id: {type: integer, notnull: true}
+    entity_id: {type: integer, notnull: true}
+    hour_count: {type: integer, notnull: true}
+    date: {type: date, notnull: true}
+    is_lecture: {type: boolean, notnull: true}
+    class: {type: integer}
+    brigade: {type: integer}
+    session: {type: integer}
+    is_telecommunication: {type: boolean, default: 0}
+    time_on: {type: time}
+  relations:
+    Timetable:
+      local: timetable_id
+      foreign: id
+      type: one
+    TimetableCycleSubject:
+      local: entity_id
+      foreign: id
+      type: one
+
+TimetableActionItem:
+  connection: doctrine
+  tableName: timetable_action_item
+  columns:
+    timetable_id: {type: integer, notnull: true}
+    entity_id: {type: integer, notnull: true}
+    hour_count: {type: integer, notnull: true}
+    date: {type: date, notnull: true}
+    is_lecture: {type: boolean, notnull: true}
+    class: {type: integer}
+    brigade: {type: integer}
+    session: {type: integer}
+    is_telecommunication: {type: boolean, default: 0}
+    time_on: {type: time}
+  relations:
+    Timetable:
+      local: timetable_id
+      foreign: id
+      type: one
+    TimetableCycleAction:
+      local: entity_id
+      foreign: id
+      type: one
